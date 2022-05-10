@@ -12,7 +12,7 @@ public class Mountain {
         this.size = size;
     }
 
-    //getters
+
     public String getName() {
         return name;
     }
@@ -23,7 +23,7 @@ public class Mountain {
         return size;
     }
 
-    //setters
+
     public void setName(String name) {
         this.name = name;
     }
