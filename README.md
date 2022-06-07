@@ -1,9 +1,21 @@
 
 # Rapport
 
-**Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Jag började med att skapa en adapter till min recycler view, en adapter gör att man sätter ihop de olika
+delar ihop det vill säga viewholdern och sedan själva getters o setter dessa kan man se i figur 1.
+
+Det getter och setter gör är att de hämtar information från json data och setter sätter värdet i detta fall så 
+är det en text. 
+
+Efter det skapade jag en viewholder det en viewholder gör är att den hämtar alla element 
+för att man sedan ska kunna visa upp dem. exempel på detta är i figur 2.
+
+jag skapade knappar för att visa data och ta bort data för att ge det en mer "verklighets"
+känsla med detta menar jag att man själva väljer när data ska visas.
+
+Som man kan se i figur 3 så är det för att hämta data, det den gör är att varje gång
+man klickar add data så kommer det data upp. 
 
 ## Följande grundsyn gäller dugga-svar:
 
@@ -16,24 +28,29 @@ _Du kan ta bort all text som finns sedan tidigare_.
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+  public String getName() {
+        return name;
     }
-}
 ```
+Figur 1
+```
+        name = itemView.findViewById(R.id.mountain_name);
+```
+Figur 2
+```
+
+        getData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new JsonTask(MainActivity.this).execute(JSON_URL);
+            }
+        });
+```
+Figur 3
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](mountain.png)
 
 Läs gärna:
 
