@@ -23,7 +23,7 @@ public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(itemsList.get(position).getName());
         holder.location.setText(itemsList.get(position).getLocation());
-        holder.size.setText(itemsList.get(position).getSize());
+        holder.size.setText(String.valueOf(itemsList.get(position).getSize()));
     }
 
     @Override

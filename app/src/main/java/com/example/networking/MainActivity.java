@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -22,12 +24,19 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     RecyclerView recyclerView;
     private Button getData;
     private Button clearData;
+    private List<Mountain> itemslist;
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        itemslist = new ArrayList<>();
+        myAdapter = new MyAdapter(itemslist);
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getData = findViewById(R.id.get_data);
         getData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +54,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
+        Log.d("TEST", "onPostExecute: " + json);
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Mountain>>() {}.getType();
-        List<Mountain> listOfMountains = gson.fromJson(json, type);
-
-
-
+        Type type = new TypeToken<List<Mountain>>(){}.getType();
+        ArrayList<Mountain> tmpList = gson.fromJson(json, type);
+        Log.d("TEST", "onPostExecute: " + tmpList.toString());
+        myAdapter.setitemslist(tmpList);
+        myAdapter.notifyDataSetChanged();
         Log.d("MainActivity", json);
     }
 
